@@ -20,6 +20,6 @@
     "baseUrl": "./"
   },
   "files": ["src/Bot.ts"],
-  "include": ["./**/*.ts"],
+  "include": ["./**/*.ts", "src/commands/help.js"],
   "exclude": ["node_modules", "dist"]
 }

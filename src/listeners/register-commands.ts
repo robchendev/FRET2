@@ -12,7 +12,7 @@ export const main = async (client: Client) => {
     await rest.put(Routes.applicationCommands(secrets.clientId), {
       body: commands,
     });
-
+    console.log(commands);
     console.log("Successfully reloaded application (/) commands.");
 
     client.login(secrets.token);

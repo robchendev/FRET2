@@ -1,9 +1,14 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Client, GatewayIntentBits, Interaction } from "discord.js";
 import { secrets } from "./config/secrets";
 import { main } from "./listeners/register-commands";
 import { Routes } from "discord.js";
 import { config } from "src/config/config";
 import { commands } from "./commands";
+import { onInteraction } from "./listeners/interaction-create";
+import { configHandler } from "./listeners/configHandler";
+
+const conf = new configHandler();
+conf.init();
 
 const client = new Client({
   intents: [
@@ -15,18 +20,8 @@ const client = new Client({
 
 client.on("ready", () => console.log(`${client.user?.username} is online`));
 
-client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-
-  const { commandName } = interaction;
-
-  if (commandName === "ping") {
-    await interaction.reply("Pong!");
-  } else if (commandName === "server") {
-    await interaction.reply("Server info.");
-  } else if (commandName === "user") {
-    await interaction.reply("User info.");
-  }
+client.on("interactionCreate", (interaction: Interaction) => {
+  onInteraction(client, interaction);
 });
 
 main(client);
