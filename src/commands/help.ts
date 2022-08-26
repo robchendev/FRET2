@@ -1,15 +1,8 @@
-import { channel } from "diagnostics_channel";
 import {
   ActionRowBuilder,
-  APIActionRowComponent,
-  APIMessageActionRowComponent,
-  APIMessageComponent,
   ChatInputCommandInteraction,
   Client,
-  CommandInteraction,
-  Embed,
   GuildMemberRoleManager,
-  Interaction,
   SelectMenuBuilder,
   SelectMenuInteraction,
 } from "discord.js";
